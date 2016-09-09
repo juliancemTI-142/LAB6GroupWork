@@ -1,0 +1,107 @@
+﻿@model IEnumerable<ForwardingProject.Domain.Entities.Driver>
+
+@{
+    ViewBag.Title = "Drivers";
+}
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
+
+    <h2>Drivers</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table border="1">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FaxNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HiredDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DriverLicense)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalCardExpire)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            using (Html.BeginForm("Delete", "Driver", new {id = item.ID}))
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FaxNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HiredDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DriverLicense)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MedicalCardExpire)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new {id = item.ID}) |
+
+                        <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete record with ID=@item.ID')"/>
+
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+
